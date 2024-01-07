@@ -1,5 +1,5 @@
-#Setup and installation
-##Downloading Locally
+# Setup and installation
+## Downloading Locally
 In CMD(Command Prompt) go to a folder you want to download the files in then do the following command
 git clone https://github.com/noob-hash/Yantra_Swarmonoid-trainingMaterial.git
 ![image](https://github.com/noob-hash/Yantra_Swarmonoid-trainingMaterial/assets/80933227/56562768-7bbc-47cf-8b24-d7366e4dfee2)
@@ -7,14 +7,14 @@ After the folder has been downloaded you can use VScode to open the downloaded f
 
 You may have seen the .env environment in the code you can try to use the same environment but if it doesn't work delete that folder and create your environment.
 
-##Creating environment
+## Creating environment
 If you need to create a virtual environment you can do so in vs code or through the command prompt just ensure you have installed Python before.
 The virtual environment ensures that all packages are bundled up and not mixed with another project meaning isolation.
 Then use the following command to create a virtual environment
 python -m venv <<environment_name>>
 e.g. python -m venv .env
 
-##Using an environment
+## Using an environment
 To use the created environment you just need to execute the activate file inside the environment simplest way to do it is
 .\<<environment_name>>\Scripts\activate.ps1
 e.g. .\.env\Scripts\ativate.ps1
@@ -26,12 +26,12 @@ Then on PowerShell run the following command:
 Set-ExecutionPolicy Unrestricted -Force
 This will allow the running of scripts in the system.
 
-##Installing Libaries
+## Installing Libaries
 You need to install a few libraries to run these commands which are listed in the requirements.txt file. You can install all of them using the following command:
 pip install -r .\requirements.txt
 Make sure the path to requirements.txt is correct.
 
-##Other Errors
+## Other Errors
 If you find an error when trying to run the Python code such as:
 ![image](https://github.com/noob-hash/Yantra_Swarmonoid-trainingMaterial/assets/80933227/dcd78b40-2c25-4600-ac60-2c2e30097289)
 It means that you have not selected your environment's Python interpreter to select it you need to do the following:
