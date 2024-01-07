@@ -126,33 +126,9 @@ def find_closest_indices(grid, value1, value2):
 
     return None
 
-def main():
-    # start_node = (3, 3)
-    # end_node = (5, 5) 
-
-    image_path = '\Yantra_Swarmonoid-trainingMaterial\images\BoardGrid.png'
-    grid =generate_matrix_from_image(cv2.imread(image_path))[0]
-    matrix_array = np.array(grid)
-    # closest_start, closest_end, min_distance = find_closest_indices(matrix_array, '6', '9')
-    # closest_end = (closest_end[0]+1,closest_end[1])
-    # path1 = astar(closest_start, closest_end,grid)
-
-    # cv2.imwrite('images/Dijkstar/OriginalGrid.png',draw_grid(grid))
-    # cv2.imshow('Detected Grid',draw_grid(grid))
-
-    # grid[closest_end[0]-1][closest_end[1]]='b'
-    # grid[closest_start[0]][closest_start[1]]='a'
-    # grid[closest_end[0]][closest_end[1]]='6'
-    # matrix_array = np.array(grid)
-
-    # closest_start, closest_end, min_distance = find_closest_indices(matrix_array, '6', '4')
-    # print(closest_end)
-    # closest_end = (closest_end[0]+2,closest_end[1]+1)
-    # path2 = astar(closest_start, closest_end,grid)
-    # grid[closest_end[0]-1][closest_end[1]]='a'
-    u=1
-    while find_closest_indices(matrix_array, '6', '9') is not None :  # Replace final_x, final_y with the coordinates of the final '4'
-        # Clear '8' blocks and find a path to '4'
+def position_Bot(bot_id,grid,img_id): #img_id is just for output of process and is not nedded
+    
+    if bot_id == '6':
         closest_start, closest_end, min_distance = find_closest_indices(matrix_array, '6', '9')
         closest_end = (closest_end[0]+1,closest_end[1])
         path = astar(closest_start, closest_end,grid)
@@ -161,9 +137,53 @@ def main():
         grid[closest_end[0]][closest_end[1]] = '6'
         
         matrix_array = np.array(grid)
-        cv2.imshow('PathGrid{}'.format(u),draw_grid(grid,path))
-        cv2.imwrite('images/Dijkstar/{}PathGrid.png'.format(u),draw_grid(grid,path))
+        cv2.imshow('1PathGrid{}'.format(u),draw_grid(grid,path))
+        cv2.imwrite('images/Dijkstar/bot1/{}PathGrid.png'.format(img_id),draw_grid(grid,path))
+
+    if bot_id == '7':
+        closest_start, closest_end, min_distance = find_closest_indices(matrix_array, '7', '8')
+        closest_end = (closest_end[0]+1,closest_end[1])
+        path = astar(closest_start, closest_end,grid)
+        grid[closest_end[0] - 1][closest_end[1]] = 'b'
+        grid[closest_start[0]][closest_start[1]] = 'a'
+        grid[closest_end[0]][closest_end[1]] = '7'
         
+        matrix_array = np.array(grid)
+        cv2.imshow('2PathGrid{}'.format(u),draw_grid(grid,path))
+        cv2.imwrite('images/Dijkstar/bot2/{}PathGrid.png'.format(img_id),draw_grid(grid,path))
+
+def main():
+
+    image_path = '\Yantra_Swarmonoid-trainingMaterial\images\BoardGrid.png'
+    grid =generate_matrix_from_image(cv2.imread(image_path))[0]
+    matrix_array = np.array(grid)
+
+    u=1
+    while find_closest_indices(matrix_array, '6', '9') is not None or find_closest_indices(matrix_array, '7', '8') is not None:
+        if find_closest_indices(matrix_array, '6', '9') is not None:
+            closest_start, closest_end, min_distance = find_closest_indices(matrix_array, '6', '9')
+            closest_end = (closest_end[0]+1,closest_end[1])
+            path = astar(closest_start, closest_end,grid)
+            grid[closest_end[0] - 1][closest_end[1]] = 'b'
+            grid[closest_start[0]][closest_start[1]] = 'a'
+            grid[closest_end[0]][closest_end[1]] = '6'
+            
+            matrix_array = np.array(grid)
+            cv2.imshow('1PathGrid{}'.format(u),draw_grid(grid,path))
+            cv2.imwrite('images/Dijkstar/bot1/{}PathGrid.png'.format(u),draw_grid(grid,path))
+
+        if find_closest_indices(matrix_array, '7', '8') is not None:
+            closest_start, closest_end, min_distance = find_closest_indices(matrix_array, '7', '8')
+            closest_end = (closest_end[0]+1,closest_end[1])
+            path = astar(closest_start, closest_end,grid)
+            grid[closest_end[0] - 1][closest_end[1]] = 'b'
+            grid[closest_start[0]][closest_start[1]] = 'a'
+            grid[closest_end[0]][closest_end[1]] = '7'
+            
+            matrix_array = np.array(grid)
+            cv2.imshow('2PathGrid{}'.format(u),draw_grid(grid,path))
+            cv2.imwrite('images/Dijkstar/bot2/{}PathGrid.png'.format(u),draw_grid(grid,path))
+
         closest_start, closest_end, min_distance = find_closest_indices(matrix_array, '6', '4')
         closest_end = (closest_end[0] + 2, closest_end[1] + 1)
         path1 = astar(closest_start, closest_end, grid)
@@ -172,8 +192,34 @@ def main():
         grid[closest_end[0]][closest_end[1]] = '6'
         matrix_array = np.array(grid)
 
-        cv2.imshow('PushGrid{}'.format(u),draw_grid(grid,path1))
-        cv2.imwrite('images/Dijkstar/{}PushGrid.png'.format(u),draw_grid(grid,path1))
+        cv2.imshow('1PushGrid{}'.format(u),draw_grid(grid,path1))
+        cv2.imwrite('images/Dijkstar/bot1/{}PushGrid.png'.format(u),draw_grid(grid,path1))
+        u+=1
+
+    u=1
+    while find_closest_indices(matrix_array, '7', '8') is not None :  # Replace final_x, final_y with the coordinates of the final '4'
+        # Clear '8' blocks and find a path to '4'
+        closest_start, closest_end, min_distance = find_closest_indices(matrix_array, '7', '8')
+        closest_end = (closest_end[0]+1,closest_end[1])
+        path = astar(closest_start, closest_end,grid)
+        grid[closest_end[0] - 1][closest_end[1]] = 'b'
+        grid[closest_start[0]][closest_start[1]] = 'a'
+        grid[closest_end[0]][closest_end[1]] = '7'
+        
+        matrix_array = np.array(grid)
+        cv2.imshow('2PathGrid{}'.format(u),draw_grid(grid,path))
+        cv2.imwrite('images/Dijkstar/bot2/{}PathGrid.png'.format(u),draw_grid(grid,path))
+        
+        closest_start, closest_end, min_distance = find_closest_indices(matrix_array, '7', '5')
+        closest_end = (closest_end[0] +1, closest_end[1] + 2)
+        path1 = astar(closest_start, closest_end, grid)
+        grid[closest_start[0]][closest_start[1]] = 'a'
+        grid[closest_start[0] - 1][closest_start[1]] = 'a'
+        grid[closest_end[0]][closest_end[1]] = '7'
+        matrix_array = np.array(grid)
+
+        cv2.imshow('2PushGrid{}'.format(u),draw_grid(grid,path1))
+        cv2.imwrite('images/Dijkstar/bot2/{}PushGrid.png'.format(u),draw_grid(grid,path1))
         u+=1
 
         # something simmilar for 8
