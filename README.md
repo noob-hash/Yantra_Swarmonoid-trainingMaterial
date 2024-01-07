@@ -29,7 +29,7 @@ If you get the following error
 Run PowerShell as administrator, you can find it by searching on the search bar
 Then on PowerShell run the following command:
 
-``Set-ExecutionPolicy Unrestricted -Force```
+```Set-ExecutionPolicy Unrestricted -Force```
 
 This will allow the running of scripts in the system.
 
