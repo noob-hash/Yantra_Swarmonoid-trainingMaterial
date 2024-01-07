@@ -12,6 +12,7 @@ If you need to create a virtual environment you can do so in vs code or through 
 The virtual environment ensures that all packages are bundled up and not mixed with another project meaning isolation.
 
 Then use the following command to create a virtual environment
+
 ``` python -m venv <<environment_name>> ```
 
 e.g. ```python -m venv .env```
@@ -20,7 +21,8 @@ e.g. ```python -m venv .env```
 To use the created environment you just need to execute the activate file inside the environment simplest way to do it is:
 
 ```.\<<environment_name>>\Scripts\activate.ps1```
-e.g. ```.\.env\Scripts\ativate.ps1```
+
+e.g. ``` .\.env\Scripts\ativate.ps1 ```
 
 If you get the following error
 ![image](https://github.com/noob-hash/Yantra_Swarmonoid-trainingMaterial/assets/80933227/6e6c6ec2-c5de-4244-9711-11a15b294f87)
@@ -33,7 +35,9 @@ This will allow the running of scripts in the system.
 
 ## Installing Libaries
 You need to install a few libraries to run these commands which are listed in the requirements.txt file. You can install all of them using the following command:
-pip install -r .\requirements.txt
+
+```pip install -r .\requirements.txt```
+
 Make sure the path to requirements.txt is correct.
 
 ## Other Errors
