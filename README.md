@@ -10,20 +10,25 @@ You may have seen the .env environment in the code you can try to use the same e
 ## Creating environment
 If you need to create a virtual environment you can do so in vs code or through the command prompt just ensure you have installed Python before.
 The virtual environment ensures that all packages are bundled up and not mixed with another project meaning isolation.
+
 Then use the following command to create a virtual environment
-python -m venv <<environment_name>>
-e.g. python -m venv .env
+``` python -m venv <<environment_name>> ```
+
+e.g. ```python -m venv .env```
 
 ## Using an environment
-To use the created environment you just need to execute the activate file inside the environment simplest way to do it is
-.\<<environment_name>>\Scripts\activate.ps1
-e.g. .\.env\Scripts\ativate.ps1
+To use the created environment you just need to execute the activate file inside the environment simplest way to do it is:
+
+```.\<<environment_name>>\Scripts\activate.ps1```
+e.g. ```.\.env\Scripts\ativate.ps1```
 
 If you get the following error
 ![image](https://github.com/noob-hash/Yantra_Swarmonoid-trainingMaterial/assets/80933227/6e6c6ec2-c5de-4244-9711-11a15b294f87)
 Run PowerShell as administrator, you can find it by searching on the search bar
 Then on PowerShell run the following command:
-Set-ExecutionPolicy Unrestricted -Force
+
+``Set-ExecutionPolicy Unrestricted -Force```
+
 This will allow the running of scripts in the system.
 
 ## Installing Libaries
