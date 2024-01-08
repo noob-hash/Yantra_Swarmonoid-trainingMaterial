@@ -1,6 +1,7 @@
 from Grid import generate_matrix_from_image
 import cv2
 import numpy as np
+import imutils
 
 # how it sees and processes image
 def Identify_Aurco(frame):
@@ -66,6 +67,7 @@ def Image_Grid(frame):
 vid = cv2.VideoCapture(0)
 while True:
     _,frame = vid.read()
+    frame = imutils.resize(frame, width=1000)
     # frame = Identify_Aurco(frame)
     frame = Image_Grid(frame)
     # cv2.imwrite('images\BoardGrid.png',frame)
