@@ -77,15 +77,17 @@ def command_bot(data):
     bot2_movement = move_direction(bot2)
 
     max_length = max(len(bot1_movement), len(bot2_movement))
-
+    response_list = []
+    
     for i in range(max_length):
         if i < len(bot1_movement) and i < len(bot2_movement):
-            print(f"1:{bot1_movement[i]}:10")
-            print(f"2:{bot1_movement[i]}:10")
+            response_list.append(f"1a{bot1_movement[i]}b10")
+            response_list.append(f"2a{bot2_movement[i]}b10")
         elif i < len(bot1_movement):
-            print(f"1:{bot1_movement[i]}:10")
+            response_list.append(f"1a{bot1_movement[i]}b10")
         elif i < len(bot2_movement):
-            print(f"1:{bot2_movement[i]}:10")      
+            response_list.append(f"2a{bot2_movement[i]}b10")   
 
-test_data = [{1: [(9, 14), (9, 13), (10, 13), (10, 12)]}, {2: [(11, 11), (11, 10), (11, 9), (11, 8), (12, 8), (13, 8), (14, 8), (15, 8), (15, 7)]}]
-command_bot(test_data)
+    return response_list  
+
+
