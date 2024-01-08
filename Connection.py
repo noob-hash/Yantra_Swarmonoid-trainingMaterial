@@ -1,4 +1,3 @@
-import socket
 import time
 
 import socket
@@ -14,26 +13,35 @@ server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((host, port))
 
 # Listen for incoming connections
-server_socket.listen(1)
+server_socket.listen(2)
 print(f"Server listening on {host}:{port}")
 
 # Accept a connection
-client_socket, client_address = server_socket.accept()
-print(f"Connection from {client_address}")
+client_socket1, client_address1 = server_socket.accept()
+print(f"Connection from {client_address1}")
+print(f"Server listening on {host}:{port}")
 
+# Accept a connection
+client_socket2, client_address2 = server_socket.accept()
+print(f"Connection from {client_address2}")
 while True:
     # Receive a response from the client
-    data = client_socket.recv(1024)
-    if not data:
+    data1 = client_socket1.recv(1024)
+    if not data1:
         break
-    print(f"Received from client: {data.decode()}")
+    data2 = client_socket2.recv(1024)
+    if not data2:
+        break
+    print(f"Received from client: {data1.decode()}")
+    print(f"Received from client: {data2.decode()}")
 
     # Send a response back to the client
     # str(dir) + ":" + str(time)
     
-    response = input("enter dir:time")
-    client_socket.sendall(response.encode())
+    response = input("Bot No:enter dir:time") #10
+    client_socket1.sendall(response.encode())
+    client_socket2.sendall(response.encode())
 # Close the connection
-client_socket.close()
+client_socket1.close()
+client_socket2.close()
 server_socket.close()
-
