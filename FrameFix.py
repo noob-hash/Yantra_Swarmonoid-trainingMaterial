@@ -27,7 +27,7 @@ print("[INFO] starting video stream...")
 vs = VideoStream(src=0).start()
 time.sleep(2.0)
 
-with open('files/camera.json', 'r') as json_file:
+with open('camera.json', 'r') as json_file:
 	camera_data = json.load(json_file)
 dist = np.array(camera_data["dist"])
 mtx = np.array(camera_data["mtx"])
