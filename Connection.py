@@ -22,17 +22,18 @@ print(f"Connection from {client_address1}")
 print(f"Server listening on {host}:{port}")
 
 # Accept a connection
-# client_socket2, client_address2 = server_socket.accept()
-# print(f"Connection from {client_address2}")
+client_socket2, client_address2 = server_socket.accept()
+print(f"Connection from {client_address2}")
 bot1_done = False
+bot2_done = False
 while True:
     # Receive a response from the client
     data1 = client_socket1.recv(1024)
     if not data1:
         break
-    # data2 = client_socket2.recv(1024)
-    # if not data2:
-    #     break
+    data2 = client_socket2.recv(1024)
+    if not data2:
+        break
     print(f"Received from client: {data1.decode()}")
     # print(f"Received from client: {data2.decode()}")
 
@@ -45,10 +46,14 @@ while True:
             print(command)
             response = command
             client_socket1.sendall(response.encode())
-            time.sleep(1)
+            # time.sleep(1)
+        if command[0]=='2' and bot2_done == False:
+            print(command)
+            response = command
+            client_socket2.sendall(response.encode())
+        time.sleep(1)
     bot1_done = True
-        # client_socket2.sendall(response.encode())
 # Close the connection
 client_socket1.close()
-# client_socket2.close()
+client_socket2.close()
 server_socket.close()
