@@ -160,9 +160,9 @@ while True:
 		print("pitch:", theta_x_360)
 		print("yaw:",theta_z_360)
 		print("roll:", theta_y_360)
-		cv2.putText(frame, "pitch:{}".format(theta_x_360), (50,50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
-		cv2.putText(frame, "yaw:{}".format(theta_z_360), (50,150), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
-		cv2.putText(frame, "roll:{}".format(theta_y_360), (50,250), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
+		cv2.putText(frame, "pitch:{}".format(theta_x_360), (50,50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+		cv2.putText(frame, "yaw:{}".format(theta_z_360), (50,150), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+		cv2.putText(frame, "roll:{}".format(theta_y_360), (50,250), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
 		frame = wrap_correction()
 
