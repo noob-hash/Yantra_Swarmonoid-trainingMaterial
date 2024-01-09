@@ -53,6 +53,7 @@ while True:
             client_socket2.sendall(response.encode())
         time.sleep(1)
     bot1_done = True
+    bot2_done = True
 # Close the connection
 client_socket1.close()
 client_socket2.close()
