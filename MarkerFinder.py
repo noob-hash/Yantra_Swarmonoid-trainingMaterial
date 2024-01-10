@@ -64,6 +64,12 @@ def Image_Grid(frame):
     
     return frame
 
+frame = cv2.imwrite('images\TestGround.png')
+frame = Image_Grid(frame)
+cv2.imwrite('images\BoardGrid.png',frame)
+
+# if your BoardGrid image is not of board run above and comment all of below
+
 vid = cv2.VideoCapture(0)
 while True:
     _,frame = vid.read()
