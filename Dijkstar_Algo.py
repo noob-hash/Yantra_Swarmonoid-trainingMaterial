@@ -192,7 +192,7 @@ def take_home(bot_id,grid,img_id): #img_id is just for output of process and is 
 
 def main():
 
-    image_path = '\Yantra_Swarmonoid-trainingMaterial\images\BoardGrid.png'
+    image_path = 'images\BoardGrid.png'
     grid =generate_matrix_from_image(cv2.imread(image_path))[0]
     matrix_array = np.array(grid)
     img_id=1
