@@ -41,16 +41,16 @@ def generate_matrix_from_image(frame):
         list_matrix = grid_matrix.tolist()
     return list_matrix,orientation
 
-vc = cv2.VideoCapture(0)
-while True:
-    _,frame = vc.read()
-    matrix, orientation = generate_matrix_from_image(frame)
-    if orientation != []:
-        print(orientation)
-        cv2.putText(frame, f"ID: {orientation[0]}", (50,50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
-    cv2.imshow('Frame',frame)
-    key = cv2.waitKey(1) & 0xFF
-	# if the `q` key was pressed, break from the loop
-    if key == ord("q"):
-        break
-cv2.destroyAllWindows()
+# vc = cv2.VideoCapture(0)
+# while True:
+#     _,frame = vc.read()
+#     matrix, orientation = generate_matrix_from_image(frame)
+#     if orientation != []:
+#         print(orientation)
+#         cv2.putText(frame, f"ID: {orientation[0]}", (50,50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
+#     cv2.imshow('Frame',frame)
+#     key = cv2.waitKey(1) & 0xFF
+# 	# if the `q` key was pressed, break from the loop
+#     if key == ord("q"):
+#         break
+# cv2.destroyAllWindows()
