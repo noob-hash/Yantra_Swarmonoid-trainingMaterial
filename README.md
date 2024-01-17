@@ -55,7 +55,11 @@ If you get the following error
 Run PowerShell as administrator, you can find it by searching on the search bar
 Then on PowerShell run the following command:
 
-```Set-ExecutionPolicy Unrestricted -Force```
+>In Powershell (in windows)
+
+```bash
+Set-ExecutionPolicy Unrestricted -Force
+```
 
 This will allow the running of scripts in the system.
 
@@ -63,8 +67,16 @@ This will allow the running of scripts in the system.
 
 You need to install a few libraries to run these commands which are listed in the requirements.txt file. You can install all of them using the following command:
 
+>In Powershell
+
 ```bash
 pip install -r .\requirements.txt
+```
+
+>In git bash
+
+```bash
+pip install -r ./requirements.txt
 ```
 
 Make sure the path to requirements.txt is correct.
