@@ -1,17 +1,20 @@
 import cv2
 import numpy as np
 
+# Create an image to place ArUco markers
+aurco_size = 50 # also equals grid size in px
+no_of_grid = 22 # number of grids | 22 rows & 22 columns
+image_size = aurco_size * no_of_grid # horizintal length = vertical length = 50*22 = 1100 px
+
+canvas = np.ones((image_size, image_size, 3), dtype=np.uint8) * 255
+# canvas size of 1100*1100 px
+
+# Aruco marker generation
 def generate_aruco_image(marker_id, marker_size=50):
     aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
     marker_image = cv2.aruco.drawMarker(aruco_dict, marker_id, marker_size)
     marker_image_bgr = cv2.cvtColor(marker_image, cv2.COLOR_GRAY2BGR)
     return marker_image_bgr
-
-# Create an image to place ArUco markers
-aurco_size = 50 #also equals grid size
-no_of_grid = 22
-image_size = aurco_size * no_of_grid
-canvas = np.ones((image_size, image_size, 3), dtype=np.uint8) * 255
 
 # Positions for markers 0-3 from top-left to bottom-right corners and waste collection 4 & 5
 positions = {
@@ -29,6 +32,7 @@ for marker_id, position in positions.items():
     x, y = position
     canvas[y:y + 50, x:x + 50] = marker
 
+# definings markder Ids, and position
 positions_bot_waste_y = {
     6: [(14*aurco_size, 9*aurco_size)], #bot 1
     7: [(11*aurco_size, 11*aurco_size)], #bot 2
@@ -48,12 +52,36 @@ positions_bot_waste_y = {
         ],
 }
 
-# Generate markers with IDs 6 and 9 and place them in playable grid
+# Generate markers with IDs 6 - 9 and place them in playable grid
 for marker_id, positions_list in positions_bot_waste_y.items():
     for position in positions_list:
         marker = generate_aruco_image(marker_id)
         x, y = position
         canvas[y:y + aurco_size, x:x + aurco_size] = marker
+
+
+# Defining Playabe gird
+# Define the start and end points of the line as tuples
+point1 = (100, 100)
+point2 = (image_size-100, 100)
+point3 = (100, image_size-100)
+point4 = (image_size-100, image_size-100)
+
+# Define the color of the line (BGR format)
+color = (0, 0, 255)  # Red in BGR
+
+# Specify the thickness of the line
+thickness = 2
+
+# Draw the line on the image
+cv2.line(canvas, point1, point2, color, thickness)
+cv2.line(canvas, point1, point3, color, thickness)
+cv2.line(canvas, point2, point4, color, thickness)
+cv2.line(canvas, point3, point4, color, thickness)
+
+# defining new playabe canvas
+playabe_canvas =  np.ones((image_size, image_size, 3), dtype=np.uint8) * 255
+
 
 # Display the image with ArUco markers
 cv2.imshow("ArUco Markers", canvas)
