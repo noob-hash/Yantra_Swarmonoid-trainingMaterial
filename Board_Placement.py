@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from ArucoGeneration import aruco_marker_generator
 
 # Create an image to place ArUco markers
 aurco_size = 50 # also equals grid size in px
@@ -9,12 +10,7 @@ image_size = aurco_size * no_of_grid # horizintal length = vertical length = 50*
 canvas = np.ones((image_size, image_size, 3), dtype=np.uint8) * 255
 # canvas size of 1100*1100 px
 
-# Aruco marker generation
-def generate_aruco_image(marker_id, marker_size=50):
-    aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
-    marker_image = cv2.aruco.drawMarker(aruco_dict, marker_id, marker_size)
-    marker_image_bgr = cv2.cvtColor(marker_image, cv2.COLOR_GRAY2BGR)
-    return marker_image_bgr
+
 
 # Positions for markers 0-3 from top-left to bottom-right corners and waste collection 4 & 5
 positions = {
@@ -28,7 +24,8 @@ positions = {
 
 # Generate markers with IDs 0-5 and place them on the canvas
 for marker_id, position in positions.items():
-    marker = generate_aruco_image(marker_id)
+    # Aruco marker generation
+    marker =  aruco_marker_generator(marker_id, marker_size=50)
     x, y = position
     canvas[y:y + 50, x:x + 50] = marker
 
@@ -55,7 +52,7 @@ positions_bot_waste_y = {
 # Generate markers with IDs 6 - 9 and place them in playable grid
 for marker_id, positions_list in positions_bot_waste_y.items():
     for position in positions_list:
-        marker = generate_aruco_image(marker_id)
+        marker = aruco_marker_generator(marker_id ,marker_size=50)
         x, y = position
         canvas[y:y + aurco_size, x:x + aurco_size] = marker
 
